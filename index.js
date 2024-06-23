@@ -12,7 +12,7 @@ io.on("connection", (socket) => {
 
 
 	socket.on("mensagem", (data) => {
-		socket.emit("showmsg", data);
+		io.emit("showmsg", data); //Emitir para todos a partir do servidor
 		console.log(data)
 	});
 
