@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Chat</title>
+</head>
+<body>
+	<h1>Chat LucasDSBR</h1>
+	<div id="chat">
+
+	</div>
+	<br>
+	<input type="text" name="" id="msg"/>
+	<input type="text" name="" id="username" placeholder="Seu nome de usuário...">
+	<br>
+	<button onclick="enviar()">Enviar</button>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+<script>
+	var socket = io("http://localhost:3000");
+
+	socket.on("disconnect", () => {
+		console.log("socket disconnected");
+	});
+
+	function enviar(){
+		var msgField = document.getElementById("msg");
+		var userNameField = document.getElementById("username");
+
+		var msg = msgField.value;
+		var userName = userNameField.value;
+
+
+		socket.emit("mensagem", { msg, userName });
+	}
+
+</script>
+</html>
