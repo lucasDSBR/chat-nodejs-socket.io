@@ -10,6 +10,12 @@ io.on("connection", (socket) => {
 		console.log("X desconectou: " + socket.id);
 	});
 
+
+	socket.on("mensagem", (data) => {
+		socket.emit("showmsg", data);
+		console.log(data)
+	});
+
 });
 
 app.set("view engine", "ejs");
